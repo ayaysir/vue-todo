@@ -16,7 +16,7 @@ npm run build
 ```
 깃허브 주소: [https://github.com/ayaysir/vue-todo](https://github.com/ayaysir/vue-todo) 
 
-##### **주요 기능**
+## **주요 기능**
 
 *   입력, 수정, 삭제 기능
 *   목록 표시 기능
