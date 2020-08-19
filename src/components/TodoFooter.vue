@@ -1,6 +1,8 @@
 <template>
-    <div class="clear-all-container">
-        <span class="clear-all-btn" @click="clearTodo">Clear All</span>
+    <div class="button-container">
+        <div class="clear-all-container">
+            <span class="clear-all-btn" @click="clearTodo">모든 일정 삭제</span>
+        </div>
     </div>
 </template>
 
@@ -9,21 +11,32 @@
         methods: {
             clearTodo() {
                 //localStorage.clear()
-                this.$emit("removeAllOfChild")
+                const isAllRemover = confirm("정말 모든 일정을 삭제하시겠습니까?")
+                if(isAllRemover) {
+                    this.$emit("removeAllOfChild")
+                }
+            },
+
+            reverseOrder() {
+                alert("ee")
+                this.$emit("reverseAllList")
             }
         }
     }
 </script>
 
 <style>
-    .clear-all-container {
-        width: 8.5rem;
+    .clear-all-container, .order-reverse-container {
+        width: 10rem;
         height: 50px;
         line-height: 50px;
         background-color: white;
         border-radius: 5px;
         margin: 0 auto;
-        
+    }
+
+    .button-container {
+        margin: 0 auto;
         cursor: pointer;
     }
     
@@ -31,4 +44,6 @@
         color: #e20303;
         display: black;
     }
+
+
 </style>

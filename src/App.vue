@@ -22,46 +22,54 @@
             }
         },
         created() {
-            if (localStorage.length > 0) {
-                for (var i = 0; i < localStorage.length; i++) {
-                    localStorage.key(i).indexOf("vue-todo") == 0 && this.todoItems.push({
-                        key: localStorage.key(i),
-                        value: localStorage.getItem(localStorage.key(i))
-                    })
-                }
+            if (localStorage.getItem("vue-todo")) {
+                // for (var i = 0; i < localStorage.length; i++) {
+                //     localStorage.key(i).indexOf("vue-todo") == 0 && this.todoItems.push({
+                //         key: localStorage.key(i),
+                //         value: localStorage.getItem(localStorage.key(i))
+                //     })
+                // }
+
+                this.todoItems = JSON.parse(localStorage.getItem("vue-todo"))
+
                 this.todoItems.sort(function(a, b) {
                     return a.key < b.key ? -1 : a.key > b.key ? 1 : 0
                 })
+
+                
             }
         },
         methods: {
-            addTodo(key, value) {
-                console.log(key, value)
-                localStorage.setItem(key, value)
+            addTodo(key, value, date) {
                 this.todoItems.push({
                     key,
-                    value
+                    value,
+                    createdDate: date,
+                    modifiedDate: date
                 })
+                localStorage.setItem("vue-todo", JSON.stringify(this.todoItems))
             },
             removeAllOfParents() {
-                localStorage.clear()
                 this.todoItems = []
+                localStorage.setItem("vue-todo", JSON.stringify(this.todoItems))
             },
             removeTodo(keyOfTodoItem, index) {
-                localStorage.removeItem(keyOfTodoItem);
                 this.todoItems.splice(index, 1)
+                localStorage.setItem("vue-todo", JSON.stringify(this.todoItems))
             },
-            editTodo(keyOfTodoItem, index, editText) {
-//                var edit = prompt(keyOfTodoItem)
+            editTodo(keyOfTodoItem, index, editText, modifiedDate) {
 
-                console.log(keyOfTodoItem, index, editText)
-                localStorage.setItem(keyOfTodoItem, editText)
+                console.log(keyOfTodoItem, index, editText, modifiedDate)
+                const item = this.todoItems[index]
                 this.todoItems.splice(index, 1, {
                     key: keyOfTodoItem,
-                    value: editText
+                    value: editText,
+                    createdDate: item.createdDate,
+                    modifiedDate: modifiedDate
                 })
+                localStorage.setItem("vue-todo", JSON.stringify(this.todoItems))
             }
-        },
+         },
 
         components: {
             'TodoHeader': TodoHeader,

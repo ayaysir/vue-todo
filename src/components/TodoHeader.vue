@@ -1,6 +1,6 @@
 <template>
     <header>
-        <h1>TODO</h1>
+        <h1>일정 관리</h1>
     </header>
 </template>
 

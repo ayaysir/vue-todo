@@ -1,6 +1,6 @@
 <template>
     <div class="input-box shadow">
-        <input type="text" v-model="newTodoItem" v-on:keyup.enter="addTodo" placeholder="해야할 일을 입력하세요.">
+        <input type="text" v-focus v-model="newTodoItem" v-on:keypress.enter="addTodo" placeholder="해야할 일을 입력하세요.">
 <!--        <button v-on:click="addTodo">추가</button>-->
        <span class="add-container" v-on:click="addTodo">
           <i class="add-btn fa fa-plus" aria-hidden="true"></i>
@@ -26,14 +26,22 @@
                 showModal: false
             }
         },
+        // v-focus 디렉티브
+        directives: {
+            focus: {
+                // directive definition
+                inserted: function (el) {
+                el.focus()
+                }
+            }
+        },
         methods: {
             addTodo() {
-                // console.log(this.newTodoItem)
+                // alert(this.newTodoItem)
                 if(this.newTodoItem !== ""){
                     var value = this.newTodoItem && this.newTodoItem.trim()
                     var key = "vue-todo-" + new Date().getTime()
-                    // localStorage.setItem("vue-todo-" + new Date().getTime(), value)
-                    this.$emit("addTodo", key, value)
+                    this.$emit("addTodo", key, value, new Date().getTime())
                     this.clearInput()
                 } else {
                     this.showModal = !this.showModal;
@@ -69,6 +77,8 @@
         display: inline-block;
         width: 3rem;
         border-radius: 0 5px 5px 0;
+
+        cursor: pointer;
     }
     .add-btn {
         color: white;
