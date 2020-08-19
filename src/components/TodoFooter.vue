@@ -17,10 +17,6 @@
                 }
             },
 
-            reverseOrder() {
-                alert("ee")
-                this.$emit("reverseAllList")
-            }
         }
     }
 </script>

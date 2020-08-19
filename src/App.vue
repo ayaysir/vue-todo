@@ -59,7 +59,7 @@
             },
             editTodo(keyOfTodoItem, index, editText, modifiedDate) {
 
-                console.log(keyOfTodoItem, index, editText, modifiedDate)
+                // console.log(keyOfTodoItem, index, editText, modifiedDate)
                 const item = this.todoItems[index]
                 this.todoItems.splice(index, 1, {
                     key: keyOfTodoItem,

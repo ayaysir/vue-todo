@@ -39,8 +39,8 @@
             addTodo() {
                 // alert(this.newTodoItem)
                 if(this.newTodoItem !== ""){
-                    var value = this.newTodoItem && this.newTodoItem.trim()
-                    var key = "vue-todo-" + new Date().getTime()
+                    const value = this.newTodoItem && this.newTodoItem.trim()
+                    const key = "vue-todo-" + new Date().getTime()
                     this.$emit("addTodo", key, value, new Date().getTime())
                     this.clearInput()
                 } else {

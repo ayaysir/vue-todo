@@ -49,7 +49,6 @@
 
         methods: {
             removeTodo(keyOfTodoItem, index) {
-                console.log(keyOfTodoItem, index)
                 this.$emit("removeTodo", keyOfTodoItem, index)
             },
 
@@ -57,7 +56,6 @@
                 
                 this.editTodoObj.index = index
                 this.currentTodo = this.propsData[index]
-                console.log(this.currentTodo, this.currentTodo.value)
                 this.editTodoObj.text = this.currentTodo.value
                 this.editTodoObj.key = keyOfTodoItem
                 this.editModal = !this.editModal
@@ -66,7 +64,6 @@
             
             editTodoAction(keyOfTodoItem, index, editText){
                 const obj = this.editTodoObj
-                console.log(obj, obj.key)
                 this.$emit("editTodo", obj.key, obj.index, obj.text, new Date().getTime())
                 this.editModal = false
                 
